@@ -10,6 +10,8 @@ public final class main {
         demonstrateOskemenCityBreak(director);
         demonstrateKatonKaragayTour(director);
         demonstrateValidation();
+        demonstrateJsonRepresentation(director);
+
     }
 
     private static void demonstrateOskemenCityBreak(
@@ -48,6 +50,20 @@ public final class main {
         System.out.println();
         System.out.println("Representation 2 - text itinerary:");
         System.out.println(natureItinerary);
+    }
+
+    private static void demonstrateJsonRepresentation(
+            TravelPackageDirector director) {
+
+        JsonTravelPackageBuilder jsonBuilder =
+                new JsonTravelPackageBuilder();
+
+        director.makeCityBreak(jsonBuilder);
+
+        String json = jsonBuilder.getResult();
+
+        System.out.println("Representation 3 - JSON:");
+        System.out.println(json);
     }
 
     private static void demonstrateValidation() {

@@ -1,57 +1,82 @@
 package builder;
 
-public final class TravelPackageObjectBuilder
+public final class JsonTravelPackageBuilder
         implements TravelPackageBuilder {
+
     private String destination;
     private int days;
     private String hotel;
     private String transport;
     private String activity;
 
-    public TravelPackageObjectBuilder setDestination(String destination) {
+    @Override
+    public JsonTravelPackageBuilder setDestination(String destination) {
         this.destination = destination;
         return this;
     }
 
-    public TravelPackageObjectBuilder setDays(int days) {
+    @Override
+    public JsonTravelPackageBuilder setDays(int days) {
         this.days = days;
         return this;
     }
 
-    public TravelPackageObjectBuilder setHotel(String hotel) {
+    @Override
+    public JsonTravelPackageBuilder setHotel(String hotel) {
         this.hotel = hotel;
         return this;
     }
 
-    public TravelPackageObjectBuilder setTransport(String transport) {
+    @Override
+    public JsonTravelPackageBuilder setTransport(String transport) {
         this.transport = transport;
         return this;
     }
 
-    public TravelPackageObjectBuilder setActivity(String activity) {
+    @Override
+    public JsonTravelPackageBuilder setActivity(String activity) {
         this.activity = activity;
         return this;
     }
 
-    public TravelPackage getResult() {
+    public String getResult() {
         validate();
-        return new TravelPackage(
-                destination, days, hotel, transport, activity);
+
+        return """
+                {
+                  "destination": "%s",
+                  "days": %d,
+                  "hotel": "%s",
+                  "transport": "%s",
+                  "activity": "%s"
+                }
+                """.formatted(
+                destination,
+                days,
+                hotel,
+                transport,
+                activity
+        );
     }
 
     private void validate() {
         if (isBlank(destination)) {
             throw new IllegalStateException("Destination is required.");
         }
+
         if (days <= 0) {
-            throw new IllegalStateException("Days must be greater than 0.\n");
+            throw new IllegalStateException(
+                    "Days must be greater than 0.");
         }
+
         if (isBlank(hotel)) {
             throw new IllegalStateException("Hotel is required.");
         }
+
         if (isBlank(transport)) {
             throw new IllegalStateException("Transport is required.");
         }
+
         if (isBlank(activity)) {
             throw new IllegalStateException("Activity is required.");
         }

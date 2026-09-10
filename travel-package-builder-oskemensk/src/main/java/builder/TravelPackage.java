@@ -24,12 +24,12 @@ public final class TravelPackage {
 
     @Override
     public String toString() {
-        return "TravelPackage{" +
-                "destination='" + destination + '\'' +
-                ", days=" + days +
-                ", hotel='" + hotel + '\'' +
-                ", transport='" + transport + '\'' +
-                ", activity='" + activity +  '\'' +
+        return "TravelPackage{\n" +
+                "  destination='" + destination + "'\n" +
+                "  days=" + days + "\n" +
+                "  hotel='" + hotel + "'\n" +
+                "  transport='" + transport + "'\n" +
+                "  activity='" + activity + "'\n" +
                 '}';
     }
 }
